@@ -10,6 +10,28 @@ function! Layers()
   Layer 'unite'
   Layer 'better-defaults'
 
+  " Custom layers
+  Layer 'text-align'
+  Layer 'ctrlp'
+  Layer 'better-motion'
+  Layer 'ycmd'
+  Layer 'python'
+  Layer 'markdown'
+  Layer 'c-c++'
+  Layer 'html'
+  Layer 'vue'
+  Layer 'file-manager'
+  Layer 'tmux'
+  Layer 'code-snippets'
+  Layer 'javascript'
+  Layer 'git'
+  Layer 'github'
+  Layer 'syntax-checking'
+  Layer 'better-defaults'
+  Layer 'spacevim'
+  Layer 'editing'
+  Layer 'programming'
+
 endfunction
 
 " Add your own plugins
@@ -25,14 +47,45 @@ function! UserInit()
 
   " Install personal plugins
   " Plug 'hecal3/vim-leader-guide'
+  Plug 'iamcco/mathjax-support-for-mkdp'
+  Plug 'iamcco/markdown-preview.vim'
+  " ctrlspace
+  Plug 'vim-ctrlspace/vim-ctrlspace'
 
 endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
 
+  " 鼠标暂不启用, 键盘党....
+  set mouse-=a
+  " 启用鼠标
+  " set mouse=a
+  " Hide the mouse cursor while typing
+  " set mousehide
+  
+  " ctrlspace {{{
+  " if has("gui_running")
+      " Settings for MacVim and Inconsolata font
+  let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
+  " endif
+  if executable("ag")
+      let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+  endif
+  let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+  let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+  let g:CtrlSpaceSaveWorkspaceOnExit = 1
+  let g:airline_exclude_preview = 1
+  hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
+  hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
+  hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
+  hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
+  " }}}
+  nnoremap <silent><Leader>p :CtrlSpace O<Cr>
+
   " If you have installed the powerline fonts and want to enable airline layer
   " let g:airline_powerline_fonts=1
+  let g:clang_library_path = '/usr/local/Cellar/llvm/3.6.2/lib/libclang.dylib'
 
   " Use gui colors in terminal if available
   if has('termguicolors')
