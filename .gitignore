@@ -17,7 +17,5 @@ Thumbs.db
 core/autoload/info.vim
 core/autoload/spacevim/info.vim
 *.un~
-private/*
-!private/README.md
 
 .xmark*
