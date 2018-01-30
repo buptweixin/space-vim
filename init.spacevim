@@ -17,6 +17,7 @@ function! Layers()
   Layer 'ycmd'
   Layer 'python'
   Layer 'markdown'
+  Layer 'chinese'
   Layer 'c-c++'
   Layer 'html'
   Layer 'vue'
@@ -25,9 +26,7 @@ function! Layers()
   Layer 'code-snippets'
   Layer 'javascript'
   Layer 'git'
-  Layer 'github'
   Layer 'syntax-checking'
-  Layer 'better-defaults'
   Layer 'spacevim'
   Layer 'editing'
   Layer 'programming'
@@ -56,6 +55,25 @@ endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
+	" disable auto cancel highlight of searching
+	map n <Plug>(anzu-n-with-echo)
+  map N <Plug>(anzu-N-with-echo)
+
+	" http://stackoverflow.com/questions/13194428/is-better-way-to-zoom-windows-in-vim-than-zoomwin
+	" Zoom / Restore window.
+	function! s:ZoomToggle() abort
+			if exists('t:zoomed') && t:zoomed
+					execute t:zoom_winrestcmd
+					let t:zoomed = 0
+			else
+					let t:zoom_winrestcmd = winrestcmd()
+					resize
+					vertical resize
+					let t:zoomed = 1
+			endif
+	endfunction
+	command! ZoomToggle call s:ZoomToggle()
+	nnoremap <silent> <LocalLeader>z :ZoomToggle<CR>
 
   " 鼠标暂不启用, 键盘党....
   set mouse-=a
