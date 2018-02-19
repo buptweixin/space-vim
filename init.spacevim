@@ -2,14 +2,11 @@
 " Comment it out if you don't like
 let g:spacevim_plug_home = '~/.vim/plugged'
 
-" Enable the existing layers in space-vim
-function! Layers()
+" The default leader key is space key.
+" Uncomment the line below and modify "<\Space>" if you prefer another
+" let g:spacevim_leader = "<\Space>"
 
-  " Default layers
-  Layer 'fzf'
-  Layer 'unite'
-  Layer 'better-defaults'
-
+<<<<<<< HEAD
   " Custom layers
   Layer 'text-align'
   Layer 'ctrlp'
@@ -32,24 +29,37 @@ function! Layers()
   Layer 'programming'
 
 endfunction
+=======
+" The default local leader key is comma.
+" Uncomment the line below and modify ',' if you prefer another
+" let g:spacevim_localleader = ','
+>>>>>>> 1574cf9d72562ae84ccfcbeeb9cd069bf3f55c7a
 
-" Add your own plugins
+" Enable the existing layers in space-vim
+let g:spacevim_layers = [
+      \ 'fzf', 'unite', 'better-defaults',
+      \ 'which-key',
+      \ ]
+
+" If you want to have more control over the layer, try using Layer command.
+" if g:spacevim_gui
+"   Layer 'airline'
+" endif
+
+" Manage your own plugins, refer to vim-plug's instruction for more detials.
 function! UserInit()
 
-  " The default leader key is space key.
-  " Uncomment the line below and modify "<\Space>" if you prefer another
-  " let g:spacevim_leader = "<\Space>"
-
-  " The default local leader key is comma.
-  " Uncomment the line below and modify ',' if you prefer another
-  " let g:spacevim_localleader = ','
-
+<<<<<<< HEAD
   " Install personal plugins
   " Plug 'hecal3/vim-leader-guide'
   Plug 'iamcco/mathjax-support-for-mkdp'
   Plug 'iamcco/markdown-preview.vim'
   " ctrlspace
   Plug 'vim-ctrlspace/vim-ctrlspace'
+=======
+  " Add plugin via Plug command.
+  Plug 'junegunn/seoul256.vim'
+>>>>>>> 1574cf9d72562ae84ccfcbeeb9cd069bf3f55c7a
 
 endfunction
 

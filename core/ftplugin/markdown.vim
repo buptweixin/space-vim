@@ -1,4 +1,4 @@
-if exists('b:did_spacevim_md_ftplugin')
+if exists('b:did_spacevim_md_ftplugin') || !spacevim#LayerLoaded('markdown')
   finish
 endif
 let b:did_spacevim_md_ftplugin = 1
@@ -27,9 +27,9 @@ endif
 let g:tagbar_type_markdown = {
       \ 'ctagstype' : 'markdown',
       \ 'kinds' : [
-        \ 'h:Heading_L1',
-        \ 'i:Heading_L2',
-        \ 'k:Heading_L3'
+        \ 'h:H1',
+        \ 'i:H2',
+        \ 'k:H3'
         \ ]
       \ }
 

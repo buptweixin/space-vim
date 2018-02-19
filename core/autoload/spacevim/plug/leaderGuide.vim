@@ -28,6 +28,8 @@ let g:spacevim#plug#leaderGuide#lmap['b'] = {
       \ 'l' : ['blast', 'last-buffer'],
       \ 'n' : ['bnext', 'next-buffer'],
       \ 'p' : ['bprevious', 'previous-buffer'],
+      \ 'b' : ['Buffers', 'fzf-buffer'],
+      \ '?' : ['Buffers', 'fzf-buffer'],
       \ }
 let g:spacevim#plug#leaderGuide#lmap['c'] = {
       \ 'name' : '+comment',
@@ -61,12 +63,15 @@ let g:spacevim#plug#leaderGuide#lmap['j'] = {
       \ 'name' : '+jump',
       \ 'j' : ['call feedkeys("\<Plug>(easymotion-overwin-f)")', 'easymotion-goto-char'],
       \ 'J' : ['call feedkeys("\<Plug>(easymotion-overwin-f2)")', 'easymotion-goto-char-2'],
-      \ 'l' : ['call feedkeys("\<Plug>(easymotion-overwin-line)")', 'easymotion-goto-line'],
-      \ 'w' : ['call feedkeys("\<Plug>(easymotion-overwin-w)")', 'easymotion-goto-word'],
+      \ 'l' : ['call feedkeys("\<Plug>(easymotion-overwin-line)")', 'jump-linewise'],
+      \ 'w' : ['call feedkeys("\<Plug>(easymotion-overwin-w)")', 'jump-to-word-bidirectional'],
+      \ 'f' : ['call feedkeys("\<Plug>(easymotion-prefix)w")', 'jump-forward-wordwise'],
+      \ 'b' : ['call feedkeys("\<Plug>(easymotion-prefix)b")', 'jump-backword-wordwise'],
       \ }
 let g:spacevim#plug#leaderGuide#lmap['p'] = {
       \ 'name' : '+projects',
-      \ 'h' : ['ProjectMru --tiebreak=end', 'helm-projectile'],
+      \ 'f' : ['call spacevim#plug#fzf#FindFileInProject()', 'find-file-in-project'],
+      \ 's' : ['Rag', 'search-in-project'],
       \ }
 let g:spacevim#plug#leaderGuide#lmap['q'] = [ 'q', 'quit' ]
 let g:spacevim#plug#leaderGuide#lmap['Q'] = [ 'qa!', 'quit-without-saving' ]
@@ -81,11 +86,52 @@ let g:spacevim#plug#leaderGuide#lmap['t'] = {
       \ 'p' : ['setlocal paste!', 'paste-mode'],
       \ 's' : ['SyntasticToggleMode', 'syntastic'],
       \ 't' : ['TagbarToggle', 'tagbar'],
+      \ 'c' : ['call spacevim#util#ToggleCursorColumn()', 'cursor-column'],
+      \ 'C' : ['call spacevim#util#ToggleColorColumn()', 'color-column'],
       \ }
 let g:spacevim#plug#leaderGuide#lmap['u'] = [ 'call feedkeys("\<C-u>")', 'scroll-up' ]
+
+nnoremap <Plug>(window_w) <C-W>w
+nnoremap <Plug>(window_r) <C-W>r
+nnoremap <Plug>(window_d) <C-W>c
+nnoremap <Plug>(window_q) <C-W>q
+nnoremap <Plug>(window_j) <C-W>j
+nnoremap <Plug>(window_k) <C-W>k
+nnoremap <Plug>(window_h) <C-W>h
+nnoremap <Plug>(window_l) <C-W>l
+nnoremap <Plug>(window_H) <C-W>5<
+nnoremap <Plug>(window_L) <C-W>5>
+nnoremap <Plug>(window_J) :resize +5<CR>
+nnoremap <Plug>(window_K) :resize -5<CR>
+nnoremap <Plug>(window_b) <C-W>=
+nnoremap <Plug>(window_s1) <C-W>s
+nnoremap <Plug>(window_s2) <C-W>s
+nnoremap <Plug>(window_v1) <C-W>v
+nnoremap <Plug>(window_v2) <C-W>v
+nnoremap <Plug>(window_2) <C-W>v
+
 let g:spacevim#plug#leaderGuide#lmap['w'] = {
       \ 'name' : '+windows',
+      \ 'w' : ['call feedkeys("\<Plug>(window_w)")', 'other-window'],
+      \ 'd' : ['call feedkeys("\<Plug>(window_d)")', 'delete-window'],
+      \ '-' : ['call feedkeys("\<Plug>(window_s1)")', 'split-window-below'],
+      \ '|' : ['call feedkeys("\<Plug>(window_v1)")', 'split-window-right'],
+      \ '2' : ['call feedkeys("\<Plug>(window_v1)")', 'layout-double-columns'],
+      \ 'h' : ['call feedkeys("\<Plug>(window_h)")', 'window-left'],
+      \ 'j' : ['call feedkeys("\<Plug>(window_j)")', 'window-below'],
+      \ 'l' : ['call feedkeys("\<Plug>(window_l)")', 'window-right'],
+      \ 'k' : ['call feedkeys("\<Plug>(window_k)")', 'window-up'],
+      \ 'H' : ['call feedkeys("\<Plug>(window_H)")', 'expand-window-left'],
+      \ 'J' : ['call feedkeys("\<Plug>(window_J)")', 'expand-window-below'],
+      \ 'L' : ['call feedkeys("\<Plug>(window_L)")', 'expand-window-right'],
+      \ 'K' : ['call feedkeys("\<Plug>(window_K)")', 'expand-window-up'],
+      \ '=' : ['call feedkeys("\<Plug>(window_b)")', 'balance-window'],
+      \ 's' : ['call feedkeys("\<Plug>(window_s1)")', 'split-window-below'],
+      \ 'v' : ['call feedkeys("\<Plug>(window_v1)")', 'split-window-below'],
+      \ '?' : ['Windows', 'fzf-window'],
       \ }
 let g:spacevim#plug#leaderGuide#lmap['x'] = {
       \ 'name' : '+text',
+      \ 'a' : ['call feedkeys("\<Plug>(EasyAlign)")', 'easy-align'],
+      \ 'd' : ['StripWhitespace', 'delete-trailing-whitespace'],
       \ }

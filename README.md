@@ -1,7 +1,7 @@
 <p align="left">
-<a href="https://github.com/liuchengxu/space-vim"><img src="https://rawgit.com/liuchengxu/space-vim/master/assets/space-vim-badge.svg" alt="badge"></a>
+<a href="https://github.com/liuchengxu/space-vim"> <img src="https://rawgit.com/liuchengxu/space-vim/master/assets/space-vim-badge.svg" alt="badge"></a>
 <a href="https://github.com/liuchengxu/space-vim/blob/master/LICENSE"><img src="https://rawgit.com/liuchengxu/space-vim/master/assets/license.svg" alt="license"></a>
-<a href="https://travis-ci.org/liuchengxu/space-vim"><img src="https://travis-ci.org/liuchengxu/space-vim.svg" alt="Build Status"></a>
+<a href="https://travis-ci.org/liuchengxu/space-vim"><img src="https://travis-ci.org/liuchengxu/space-vim.svg" alt="Build Status"></a> <a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/space-vim/backers/badge.svg" /></a> <a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/space-vim/sponsors/badge.svg" /></a>
 </p>
 
 --------------------
@@ -36,7 +36,6 @@
   * [Manual](#manual)
 * [Customize](#customize)
   * [Presetting](#presetting)
-  * [`Layers()`](#layers)
   * [`UserInit()`](#userinit)
   * [`UserConfig()`](#userconfig)
 * [How to use](#how-to-use)
@@ -44,7 +43,7 @@
   * [Commands](#commands)
   * [Tips](#tips)
     * [Enable GUI color in terminal vim](#enable-gui-color-in-terminal-vim)
-    * [Terminal font](#terminal-font)
+    * [Terminal Font](#terminal-font)
 * [Update](#update)
 * [Contributions](#contributions)
 * [Acknowledgements](#acknowledgements)
@@ -67,12 +66,12 @@ The distribution is completely customizable using `.spacevim`, which is equivale
 
 ## Features
 
-- **Beautiful interface:** I have written a vim colorscheme [space-vim-dark](https://github.com/liuchengxu/space-vim-dark) based on spacemacs-dark theme. You could also try [spacemacs-theme.vim](https://github.com/colepeters/spacemacs-theme.vim).
+- **Beautiful interface:** I have written a vim colorscheme [space-vim-dark](https://github.com/liuchengxu/space-vim-dark) based on spacemacs-dark theme. You could also try [spacemacs-theme.vim](https://github.com/colepeters/spacemacs-theme.vim). [More screenshots](https://github.com/liuchengxu/space-vim/wiki/screenshots)
 
     ![screenshot](https://raw.githubusercontent.com/liuchengxu/img/master/space-vim/space-vim-gui.png)
     (Terminal vim with `set termguicolors`)
 
-- **Mnemonic key bindings:** commands have mnemonic prefixes like <kbd>SPC b</kbd> for all the buffer commands.
+- **Mnemonic key bindings:** commands have mnemonic prefixes like <kbd>SPC b</kbd> for all the buffer commands. Lots of basic key bindings are provided by [vim-better-default](https://github.com/liuchengxu/vim-better-default).
 
     Meanwhile, the whole key bindings have been well adapted for vim for the lack of great plugins similar to which-key in emacs. Most key bindings are limited to no more than two keystrokes without counting `<Leader>` or `<LocalLeader>` in, e.g. <kbd>SPC x d</kbd> to delete trailing whitespaces.
 
@@ -164,42 +163,38 @@ If `.spacevim` does not exist, vanilla vim will be loaded! Refer to [init.spacev
 " Let Vim and NeoVim shares the same plugin directory
 let g:spacevim_plug_home = '~/.vim/plugged'
 
-" Change the background color of theme space-vim-dark (default 235)
-let g:space_vim_dark_background = 234
-```
+" The default leader key is space key.
+" Uncomment the line below and modify "<\Space>" if you prefer another
+" let g:spacevim_leader = "<\Space>"
 
-### `Layers()`
+" The default local leader key is comma.
+" Uncomment the line below and modify ',' if you prefer another
+" let g:spacevim_localleader = ','
+
+" Enable the existing layers in space-vim
+let g:spacevim_layers = [
+      \ 'fzf', 'unite', 'better-defaults',
+      \ 'which-key',
+      \ ]
+
+" If you want to have more control over the layer, try using Layer command.
+" if g:spacevim_gui
+"   Layer 'airline'
+" endif
+```
 
 Please refer to [LAYERS.md](layers/LAYERS.md) to take a look at the whole shipped layers.
 
-```vim
-" Enable the existing layers in space-vim
-function! Layers()
-
-  " Default layers
-  Layer 'fzf'
-  Layer 'unite'
-  Layer 'better-defaults'
-
-endfunction
-```
+Basically, `g:spacevim_layers` almost takes the place of `Layer` command. As far as I known, most people never use the option of `Layer` command, e.g., `exclude`, so `g:spacevim_layers` could save a lengthy `Layer` list, requiring less ceremony. Nevertheless, `Layer` command is still avaiable for some advanced uses.
 
 ### `UserInit()`
 
 ```vim
-" Add your own plugins
+" Manage your own plugins, refer to vim-plug's instruction for more detials.
 function! UserInit()
 
-  " The default leader key is space key.
-  " Uncomment the line below and modify "<\Space>" if you prefer another
-  " let g:spacevim_leader = "<\Space>"
-
-  " The default local leader key is comma.
-  " Uncomment the line below and modify ',' if you prefer another
-  " let g:spacevim_localleader = ','
-
-  " Install personal plugins
-  " Plug 'hecal3/vim-leader-guide'
+  " Add plugin via Plug command.
+  Plug 'junegunn/seoul256.vim'
 
 endfunction
 ```
@@ -312,3 +307,33 @@ I would like to thank the many people who have helped and contributed to this pr
 - [A Vim Configuration for Spacemacs User](http://www.liuchengxu.org/posts/space-vim/)
 - [用 Vim 写 Python 的最佳实践](https://www.v2ex.com/t/337102#reply61)
 - [手工制作一个漂亮的 vim statusline ](https://segmentfault.com/a/1190000007939244)
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/space-vim/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/space-vim#backer)]
+
+<a href="https://opencollective.com/space-vim#backers" target="_blank"><img src="https://opencollective.com/space-vim/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/space-vim#sponsor)]
+
+<a href="https://opencollective.com/space-vim/sponsor/0/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/1/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/2/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/3/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/4/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/5/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/6/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/7/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/8/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/space-vim/sponsor/9/website" target="_blank"><img src="https://opencollective.com/space-vim/sponsor/9/avatar.svg"></a>
+
+

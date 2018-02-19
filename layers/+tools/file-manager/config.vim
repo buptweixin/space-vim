@@ -5,14 +5,8 @@ scriptencoding utf-8
   let g:NERDTreeAutoDeleteBuffer=1
   " ❯
   let g:NERDTreeDirArrowExpandable = "\u276f"
-  " ▽
-  let g:NERDTreeDirArrowCollapsible = "\u25bd"
-  let g:NERDTreeIgnore=[
-              \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
-              \ '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$',
-              \ ]
-  " close vim if the only window left open is a NERDTree
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  let g:NERDTreeDirArrowCollapsible = "~"
+  let g:NERDTreeIgnore = g:spacevim#plug#nerdtree#ignore
 
   nnoremap <F4> :NERDTreeToggle<CR>
   inoremap <F4> <ESC>:NERDTreeToggle<CR>

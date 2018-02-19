@@ -190,13 +190,9 @@ function! s:align_lists(lists)
   return a:lists
 endfunction
 
-function! s:warn(message)
-  echohl WarningMsg
-  echom a:message
-  echohl None
-  return 0
-endfunction
-
+" ------------------------------------------------------------------
+" Configuration Files
+" ------------------------------------------------------------------
 function! spacevim#plug#fzf#Open()
   let l:open = [
         \ '~/.spacevim',
@@ -213,6 +209,9 @@ function! spacevim#plug#fzf#Open()
         \ a:000)
 endfunction
 
+" ------------------------------------------------------------------
+" Runtimepath
+" ------------------------------------------------------------------
 function! spacevim#plug#fzf#Rtp()
   let l:rtps = split(&runtimepath, ',')
   let l:size = len(l:rtps)>20 ? 20 : len(l:rtps)
@@ -223,6 +222,9 @@ function! spacevim#plug#fzf#Rtp()
         \ a:000)
 endfunction
 
+" ------------------------------------------------------------------
+" Oldfiles
+" ------------------------------------------------------------------
 function! spacevim#plug#fzf#Oldfiles()
   redir => out
   silent oldfiles
@@ -237,9 +239,6 @@ function! spacevim#plug#fzf#Oldfiles()
         \ a:000)
 endfunction
 
-" ------------------------------------------------------------------
-" Commands
-" ------------------------------------------------------------------
 let s:nbs = nr2char(0x2007)
 
 function! s:format_cmd(line)
@@ -290,6 +289,9 @@ function! s:excmds()
   return commands
 endfunction
 
+" ------------------------------------------------------------------
+" FZF commands
+" ------------------------------------------------------------------
 function! spacevim#plug#fzf#FZFCmd()
   redir => cout
   silent command
@@ -302,9 +304,13 @@ function! spacevim#plug#fzf#FZFCmd()
   \ 'source':  extend(list[0:0], map(list[1:], 's:format_cmd(v:val)')),
   \ 'sink*':   s:function('s:command_sink'),
   \ 'options': '--ansi --expect '.get(g:, 'fzf_commands_expect', 'ctrl-x').
-  \            ' --tiebreak=index --header-lines 1 -x --prompt "FZF> " -n2,3,2..3 -d'.s:nbs}, a:000)
+  \            ' --tiebreak=index --header-lines 1 -x --prompt "FZF Cmd> " -n2,3,2..3 -d'.s:nbs},
+  \ a:000)
 endfunction
 
+" ------------------------------------------------------------------
+" spacevim related functions
+" ------------------------------------------------------------------
 function! spacevim#plug#fzf#Func()
   redir => fout
   silent function
@@ -319,6 +325,18 @@ function! spacevim#plug#fzf#Func()
         \ a:000)
 endfunction
 
-function! spacevim#plug#fzf#Project()
+" ------------------------------------------------------------------
+" FZF find file
+" ------------------------------------------------------------------
+function! spacevim#plug#fzf#FindFileInProject()
   exe ':FZF ' . FindRootDirectory()
+endfunction
+
+" ------------------------------------------------------------------
+" Rag utilizes ag in the root directory of project
+" ------------------------------------------------------------------
+command! -nargs=* Rag
+  \ call fzf#vim#ag(<q-args>, extend({'dir':FindRootDirectory(), 'options': '--prompt="'.FindRootDirectory().'> "'}, g:fzf_layout))
+function! spacevim#plug#fzf#SearchInProject()
+  exe ':Rag'
 endfunction
